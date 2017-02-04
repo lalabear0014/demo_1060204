@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+	
+	before_action :set_event, :only => [:show, :edit, :update, :destroy]
+
 	# 注意！！！只有 index 的 @events —> 有加s
 	# 其他的 action 的 @event 都沒有
 
@@ -10,7 +13,6 @@ class EventsController < ApplicationController
 
 	# GET /events/show/:id
 	def show
-		@event = Event.find( params[:id] )
 		@page_title = @event.name
 	end
 
@@ -30,12 +32,11 @@ class EventsController < ApplicationController
 
 	# GET /events/edit/:id
 	def edit
-		@event = Event.find( params[:id] )
+		
 	end
 
 	# POST /events/update/:id
 	def update
-		@event = Event.find( params[:id] )
 		@event.update( event_params )
 
 		redirect_to :action => :show, :id => @event
@@ -43,13 +44,16 @@ class EventsController < ApplicationController
 
 	# GET /events/destroy/:id
 	def destroy
-		@event = Event.find( params[:id] )
 		@event.destroy
 
 		redirect_to :action => :index
 	end
 
 	private
+
+	def set_event
+		@event = Event.find( params[:id] )
+	end
 
 	def event_params
 		params.require(:event).permit(:name, :description)
