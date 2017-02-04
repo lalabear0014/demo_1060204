@@ -27,6 +27,19 @@ class EventsController < ApplicationController
 		redirect_to :action => :index
 	end
 
+	# GET /events/edit/:id
+	def edit
+		@event = Event.find( params[:id] )
+	end
+
+	# POST /events/update/:id
+	def update
+		@event = Event.find( params[:id] )
+		@event.update( event_params )
+
+		redirect_to :action => :show, :id => @event
+	end
+
 	private
 
 	def event_params
