@@ -8,6 +8,11 @@ class EventsController < ApplicationController
 		@events = Event.all
 	end
 
+	# GET /events/show/:id
+	def show
+		@event = Event.find( params[:id] )
+	end
+
 	# GET /events/new
 	def new
 		@event = Event.new
@@ -29,5 +34,5 @@ class EventsController < ApplicationController
 	end
 
 
-	
+
 end
