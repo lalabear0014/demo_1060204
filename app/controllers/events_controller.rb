@@ -40,6 +40,14 @@ class EventsController < ApplicationController
 		redirect_to :action => :show, :id => @event
 	end
 
+	# GET /events/destroy/:id
+	def destroy
+		@event = Event.find( params[:id] )
+		@event.destroy
+
+		redirect_to :action => :index
+	end
+
 	private
 
 	def event_params
