@@ -8,7 +8,8 @@ class EventsController < ApplicationController
 	# GET /events/index
 	# GET /events
 	def index
-		@events = Event.all
+		# @events = Event.all 	# 將所有資料撈出來
+		@events = Event.page( params[:page] ).per(10)
 	end
 
 	# GET /events/show/:id
