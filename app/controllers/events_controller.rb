@@ -24,10 +24,12 @@ class EventsController < ApplicationController
 	# POST /events/create
 	def create
 		@event = Event.new( event_params )
-		@event.save
-
-		# 告訴瀏覽器 HTTP code: 303
-		redirect_to :action => :index
+		if @event.save
+			# 告訴瀏覽器 HTTP code: 303
+			redirect_to :action => :index
+		else
+			render :action => :new	# new.html.erb
+		end
 	end
 
 	# GET /events/edit/:id
@@ -37,9 +39,14 @@ class EventsController < ApplicationController
 
 	# POST /events/update/:id
 	def update
-		@event.update( event_params )
-
-		redirect_to :action => :show, :id => @event
+		if @event.update( event_params )
+			redirect_to :action => :show, :id => @event
+		else
+			# 用 redirect_to 會重新整理頁面，原本要輸入的資料會不見
+			# 用 render 可保留頁面
+			# redirect_to :action => :edit, :id => @event
+			render :action => :edit	# edit.html.erb
+		end
 	end
 
 	# GET /events/destroy/:id
