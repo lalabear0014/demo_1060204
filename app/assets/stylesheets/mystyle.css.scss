@@ -1,0 +1,7 @@
+#demo {
+	height: 200px;
+	/* 這是erb檔的寫法 */
+	/* background-image: url('<%= asset_path("egg.png") %>'); */
+	/* 這是scss檔的寫法 */
+	background-image: image-url("egg.png");
+}
