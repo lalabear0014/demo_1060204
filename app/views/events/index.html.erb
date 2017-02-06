@@ -18,6 +18,8 @@
 	<% end %>
 </table>
 
+<%= button_to "Delete All", bulk_delete_events_path %>
+
 <%= link_to 'New Event', new_event_path %>
 
 <%= paginate @events %>

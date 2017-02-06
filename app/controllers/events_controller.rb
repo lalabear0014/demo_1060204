@@ -12,11 +12,6 @@ class EventsController < ApplicationController
 		@events = Event.page( params[:page] ).per(10)
 	end
 
-	# GET /events/latest
-	def latest
-		@events = Event.order("id DESC").limit(3)
-	end
-
 	# GET /events/:id
 	def show
 		@page_title = @event.name
@@ -63,6 +58,14 @@ class EventsController < ApplicationController
 		flash[:alert] = "刪除成功"
 
 		redirect_to events_path
+	end
+
+	# POST /events/bulk_delete
+	def bulk_delete
+		Event.destroy_all
+
+		# redirect_to event_path
+		redirect_to :back
 	end
 
 	private
