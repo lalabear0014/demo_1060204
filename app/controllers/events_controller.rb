@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 	# GET /events
 	def index
 		# @events = Event.all 	# 將所有資料撈出來
-		@events = Event.page( params[:page] ).per(10)
+		prepare_variable_for_index_template
 	end
 
 	# GET /events/:id
@@ -90,6 +90,15 @@ class EventsController < ApplicationController
 		params.require(:event).permit(:name, :description, :category_id, :status, :group_ids => [])
 	end
 
+	def prepare_variable_for_index_template
 
+		if params[:keyword]
+			@events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
+		else
+			@events = Event.all	
+		end
+
+		@events = @events.page( params[:page] ).per(10)
+	end
 
 end
