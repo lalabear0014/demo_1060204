@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	
-	before_action :set_event, :only => [:show, :edit, :update, :destroy]
+	before_action :set_event, :only => [:show, :dashboard, :edit, :update, :destroy]
 
 	# 注意！！！只有 index & latest 的 @events —> 有加s
 	# 其他的 action 的 @event 都沒有
@@ -15,6 +15,11 @@ class EventsController < ApplicationController
 	# GET /events/:id
 	def show
 		@page_title = @event.name
+	end
+
+	# GET /events/:id/dashboard
+	def dashboard
+		
 	end
 
 	# GET /events/new

@@ -12,6 +12,7 @@
 			</td>
 			<td>
 				<%= link_to 'Show', event_path(e), :class => "btn btn-primary" %>
+				<%= link_to 'Dashboard', dashboard_event_path(e), :class => "btn btn-primary" %>
 				<%= link_to 'Attendee List', event_attendees_path(e), :class => "btn btn-primary" %>
 				<%= link_to 'Edit', edit_event_path(e), :class => "btn btn-default" %>
 				<%= link_to 'Delete', event_path(e), :method => :delete, :class => "btn btn-danger" %>
