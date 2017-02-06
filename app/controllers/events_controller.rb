@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 	
 	before_action :set_event, :only => [:show, :edit, :update, :destroy]
 
-	# 注意！！！只有 index 的 @events —> 有加s
+	# 注意！！！只有 index & latest 的 @events —> 有加s
 	# 其他的 action 的 @event 都沒有
 
 	# GET /events/index
@@ -10,6 +10,11 @@ class EventsController < ApplicationController
 	def index
 		# @events = Event.all 	# 將所有資料撈出來
 		@events = Event.page( params[:page] ).per(10)
+	end
+
+	# GET /events/latest
+	def latest
+		@events = Event.order("id DESC").limit(3)
 	end
 
 	# GET /events/:id
