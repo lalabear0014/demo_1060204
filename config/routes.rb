@@ -23,5 +23,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  # root to: "home#index"
+
   # match ':controller(/:action(/:id(.:format)))', :via => :all
 end
