@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 	
 	validates_presence_of :name
 
+	belongs_to :user
+
 	has_many :attendees
 	belongs_to :category
 
