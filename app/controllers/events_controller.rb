@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 	
+	before_action :authenticate_user!, :except => [:index]
+
 	before_action :set_event, :only => [:show, :dashboard, :edit, :update, :destroy]
 
 	# 注意！！！只有 index & latest 的 @events —> 有加s

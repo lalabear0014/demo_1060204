@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users # rails g devise user 自動產生的
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :events do
   	resources :attendees, :controller => "event_attendees"
