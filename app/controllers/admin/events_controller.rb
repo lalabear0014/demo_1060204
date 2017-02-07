@@ -1,6 +1,8 @@
 class Admin::EventsController < ApplicationController
 
-	before_action :authenticate
+	before_action :authenticate_user!
+
+	before_action :check_admin
 
 	layout "admin"
 
@@ -10,10 +12,13 @@ class Admin::EventsController < ApplicationController
 
 	protected
 
-    def authenticate
-       authenticate_or_request_with_http_basic do |user_name, password|
-           user_name == "username" && password == "password"
-       end
+    def check_admin
+    	unless current_user.admin?
+    		# flash[:alert] = "No permission!!!"
+       		# redirect_to root_path
+       		# return
+       		raise ActiveRecord::RecordNotFind	# error 404
+    	end
     end
     
 end
